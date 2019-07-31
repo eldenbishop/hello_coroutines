@@ -33,6 +33,13 @@ fun main(args: Array<String>) {
             1004L to Car("bmw", "sue")
     ))
     runBlocking {
+        /*
+        Launch one "thread" per car. Although the async section is serial "blocking"
+        code, the backing lookups (cars, people, dealerships) are invoked as bulk lookups.
+        In this case, this should print car.lookup num-keys: 5, dealership.lookup num-keys: 5 etc.
+        In total, this will perform only 4 lookups while appearing from the code below to
+        be performing > 20 lookups.
+         */
         for (vin in cars.keys) {
             async {
                 val car = cars.lookup(vin)
