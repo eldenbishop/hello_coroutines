@@ -44,9 +44,9 @@ fun main(args: Array<String>) {
             async {
                 val car = cars.lookup(vin)
                 val dealer = dealerships.lookup(car!!.dealerId)
-                if (car!!.ownerId != dealer!!.managerId) {
-                    val owner = people.lookup(car!!.ownerId)
-                    val contact = people.lookup(dealer!!.managerId)!!.email
+                if (car.ownerId != dealer!!.managerId) {
+                    val owner = people.lookup(car.ownerId)
+                    val contact = people.lookup(dealer.managerId)!!.email
                         println("From: ${owner!!.email}, to: ${contact}, at: ${dealer.name}, vin: ${vin}")
                 }
             }
