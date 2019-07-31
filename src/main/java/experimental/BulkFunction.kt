@@ -6,6 +6,10 @@ import java.util.ArrayList
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 
+/*
+Note: this object is not thread-safe as it assumes all calls are coming from a single threaded coroutines context.
+TODO: Make it thread-safe so it can be re-used across multiple consumer threads.
+ */
 abstract class BulkFunction<I,R> {
 
     val nextReqId = AtomicLong()
